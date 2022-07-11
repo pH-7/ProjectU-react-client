@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import CreateUser from "./components/CreateUser";
+import RetrieveUser from "./components/RetrieveUser";
+import UsersList from "./components/UsersList";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Container } from "react-bootstrap";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+import { createGlobalStyle } from "styled-components";
 
-function App() {
+const BackgroundColor = createGlobalStyle`
+    body {
+        background-color: ${(props) => (props?.light ? "#f2f2f2" : "white")};
+    }
+`;
+
+export default () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BackgroundColor light />
+      <ToastContainer />
+      <Container fluid className="mt-4 mt-3">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<UsersList />} />
+            <Route path="/create" element={<CreateUser />} />
+            <Route path="/profile/:id" element={<RetrieveUser />} />
+          </Routes>
+        </BrowserRouter>
+      </Container>
+    </>
   );
-}
-
-export default App;
+};
