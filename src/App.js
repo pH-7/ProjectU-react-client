@@ -14,20 +14,22 @@ const BackgroundColor = createGlobalStyle`
     }
 `;
 
-export default () => {
+const App = () => {
   return (
     <>
       <BackgroundColor light />
-      <ToastContainer />
       <Container fluid className="mt-4 mt-3">
+        <ToastContainer />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<UsersList />} />
             <Route path="/create" element={<CreateUser />} />
-            <Route path="/profile/:id" element={<RetrieveUser />} />
+            <Route path="/:userId" element={<RetrieveUser />} />
           </Routes>
         </BrowserRouter>
       </Container>
     </>
   );
 };
+
+export default App;
