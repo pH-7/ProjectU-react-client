@@ -1,3 +1,4 @@
+import Layout from "./Layout";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
@@ -18,7 +19,7 @@ const UsersList = () => {
   }, []);
 
   return (
-    <Container className="mt-5 mb-5">
+    <Layout>
       <h3 className="text-center mb-3">Users</h3>
       {Object.values(users).map((user) => (
         <Row className="justify-content-center">
@@ -37,7 +38,7 @@ const UsersList = () => {
           </Col>
         </Row>
       ))}
-    </Container>
+    </Layout>
   );
 };
 
