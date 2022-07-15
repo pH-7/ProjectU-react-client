@@ -1,6 +1,6 @@
-import CreateUser from "./components/CreateUser";
-import RetrieveUser from "./components/RetrieveUser";
-import UsersList from "./components/UsersList";
+import CreateUser from "./components/user/CreateUser";
+import RetrieveUser from "./components/user/RetrieveUser";
+import UsersList from "./components/user/UsersList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.min.css";
