@@ -20,7 +20,7 @@ const UsersList = () => {
     <Layout>
       <h3 className="text-center mb-3">Users</h3>
       {Object.values(users).map((user) => (
-        <Row className="justify-content-center">
+        <Row key={user.id} className="justify-content-center">
           <Col lg={4}>
             <Card>
               <Card.Body>
