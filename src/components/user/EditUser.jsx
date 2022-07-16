@@ -3,7 +3,7 @@ import Layout from "../layout/Layout";
 import React from "react";
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const EditUser = () => {
@@ -13,13 +13,17 @@ const EditUser = () => {
   const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
+  const [id, setId] = useState(null);
 
   const initializeUser = async () => {
-    const response = await userService.retrieveUser(userId);
-    setName(response.name);
-    setEmail(response.email);
-    setCity(response.city);
-    setCountry(response.country);
+    const user = await userService.retrieveUser(userId);
+
+    // Assign the values to their states
+    setName(user.name);
+    setEmail(user.email);
+    setCity(user.city);
+    setCountry(user.country);
+    setId(user.id);
   };
 
   useEffect(() => {
@@ -99,8 +103,22 @@ const EditUser = () => {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit" onClick={submitForm}>
-              Add User
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={submitForm}
+              className="m-lg-1"
+            >
+              Update
+            </Button>
+
+            <Button
+              variant="danger"
+              as={NavLink}
+              to={`/remove/${id}`}
+              className="m-lg-1"
+            >
+              Delete
             </Button>
           </Form>
         </Col>
