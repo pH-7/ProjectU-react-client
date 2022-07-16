@@ -27,6 +27,13 @@ export const editUser = async (userId, payload) => {
   return apiResponse;
 };
 
+export const removeUser = async (userId) => {
+  const getUserEndpoint = `${baseApiUrl}/v1/user/${userId}`;
+  const { data: apiResponse } = await axios.delete(`${getUserEndpoint}`);
+
+  return apiResponse;
+};
+
 export const retrieveAllUsers = async () => {
   const getAllUsersEndpoint = `${baseApiUrl}/v1/user/all`;
   const { data: apiResponse } = await axios.get(`${getAllUsersEndpoint}`);

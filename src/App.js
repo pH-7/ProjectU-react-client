@@ -1,5 +1,6 @@
 import CreateUser from "./components/user/CreateUser";
 import EditUser from "./components/user/EditUser";
+import RemoveUser from "./components/user/RemoveUser";
 import RetrieveUser from "./components/user/RetrieveUser";
 import UsersList from "./components/user/UsersList";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,6 +15,7 @@ const App = () => {
           <Route path="/" element={<UsersList />} />
           <Route path="/create" element={<CreateUser />} />
           <Route path="/edit/:userId" element={<EditUser />} />
+          <Route path="/remove/:userId" element={<RemoveUser />} />
           <Route path="/:userId" element={<RetrieveUser />} />
         </Routes>
       </BrowserRouter>
