@@ -1,58 +1,59 @@
+import { upperCaseFirst } from "../../helpers/string.helper";
 import * as userService from "../../services/user.service";
 import Layout from "../layout/Layout";
-import React from "react";
 import { useEffect, useState } from "react";
-import { Button, Card, Col, Form, Row } from "react-bootstrap";
-import { NavLink, useParams } from "react-router-dom";
+import { Button, Col, Form, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const EditUser = () => {
   const { userId } = useParams();
 
+  const [id, setId] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
-  const [id, setId] = useState(null);
 
-  const initializeUser = async () => {
+  const populateUserFields = async () => {
     const user = await userService.retrieveUser(userId);
-
-    // Assign the values to their states
+    setId(user.id);
     setName(user.name);
     setEmail(user.email);
     setCity(user.city);
     setCountry(user.country);
-    setId(user.id);
   };
 
   useEffect(() => {
-    initializeUser();
+    populateUserFields();
   }, [userId]);
 
   const submitForm = async (event) => {
     event.preventDefault();
 
-    const payload = {
-      name,
-      email,
-      city,
-      country,
-    };
     try {
-      if (await userService.editUser(userId, payload)) {
-        await initializeUser();
-        toast.success("Successfully updated.");
+      const payload = {
+        name,
+        email,
+        city,
+        country,
+      };
+      const response = await userService.editUser(userId, payload);
+      if (response?.status && response?.user) {
+        const userName = response.user.name;
+        toast.success(`${userName} User successfully updated.`);
+      } else {
+        toast.warn(`User couldn't be saved.`);
       }
-    } catch (err) {
+    } catch (error) {
       const {
         data: {
           errors: { body },
         },
-      } = err.response;
+      } = error.response;
+      const errorMessage = upperCaseFirst(body[0]?.message);
 
-      const errorMessage = body[0]?.message;
-      toast.error(`Error while saving. ${errorMessage}`);
+      toast.error(errorMessage);
     }
   };
 
@@ -74,9 +75,9 @@ const EditUser = () => {
             <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
               <Form.Control
-                type="email"
-                value={email}
+                type="text"
                 placeholder="Email"
+                value={email}
                 onChange={(fieldElement) => setEmail(fieldElement.target.value)}
               />
             </Form.Group>
@@ -85,8 +86,8 @@ const EditUser = () => {
               <Form.Label>City</Form.Label>
               <Form.Control
                 type="text"
-                value={city}
                 placeholder="City"
+                value={city}
                 onChange={(fieldElement) => setCity(fieldElement.target.value)}
               />
             </Form.Group>

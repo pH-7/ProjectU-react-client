@@ -1,3 +1,4 @@
+import { upperCaseFirst } from "../../helpers/string.helper";
 import * as userService from "../../services/user.service";
 import Layout from "../layout/Layout";
 import React, { useState } from "react";
@@ -37,9 +38,6 @@ const CreateUser = () => {
         toast.warn("An error has occurred.");
       }
     } catch (error) {
-      const fixCaps = (message) =>
-        message[0].toUpperCase() + message.substring(1);
-
       const getErrorMessage = () => {
         const {
           data: {
@@ -50,7 +48,7 @@ const CreateUser = () => {
         const message = body[0]?.message;
 
         // Uppercase the first letter of the message
-        return fixCaps(message);
+        return upperCaseFirst(message);
       };
 
       toast.error(getErrorMessage());
