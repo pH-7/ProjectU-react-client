@@ -1,7 +1,7 @@
 import * as userService from "../../services/user.service";
 import Layout from "../layout/Layout";
 import React, { useEffect, useState } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 
 const UsersList = () => {
   const [users, setUsers] = useState({}); // important, default need to be empty object
