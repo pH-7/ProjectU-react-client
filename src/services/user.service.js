@@ -20,6 +20,13 @@ export const retrieveUser = async (userId) => {
   return apiResponse;
 };
 
+export const editUser = async (userId, payload) => {
+  const getUserEndpoint = `${baseApiUrl}/v1/user/${userId}`;
+  const { data: apiResponse } = await axios.put(`${getUserEndpoint}`, payload);
+
+  return apiResponse;
+};
+
 export const retrieveAllUsers = async () => {
   const getAllUsersEndpoint = `${baseApiUrl}/v1/user/all`;
   const { data: apiResponse } = await axios.get(`${getAllUsersEndpoint}`);
