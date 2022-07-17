@@ -1,4 +1,4 @@
-import { upperCaseFirst } from "../../helpers/string.helper";
+import { firstUpperCase } from "../../helpers/string.helper";
 import * as userService from "../../services/user.service";
 import Layout from "../layout/Layout";
 import React, { useState } from "react";
@@ -48,7 +48,7 @@ const CreateUser = () => {
         const message = body[0]?.message;
 
         // Uppercase the first letter of the message
-        return upperCaseFirst(message);
+        return firstUpperCase(message);
       };
 
       toast.error(getErrorMessage());
