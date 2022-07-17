@@ -14,11 +14,10 @@ const UsersList = () => {
       setUsers(users);
     } catch (error) {
       const retrieveErrorMessage = () => {
-        const {
-          data: { message },
-        } = error.response;
+        const apiErrorMessage = error?.response?.data?.message;
 
-        return message;
+        // Null Coalescing Operator
+        return apiErrorMessage ?? "Error while connecting to the server";
       };
       setErrorMessage(retrieveErrorMessage());
     }
@@ -34,7 +33,7 @@ const UsersList = () => {
         <h3 className="text-center text-danger fw-bold">{errorMessage}</h3>
       ) : (
         <>
-          <h3 className="text-center mb-3">Users</h3>
+          <h4 className="text-center mb-3">Users</h4>
           {Object.values(users).map((user) => (
             <Row key={user.id} className="justify-content-center">
               <Col lg={4}>
