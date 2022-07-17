@@ -1,5 +1,5 @@
+import Layout from "../../components/layout/Layout";
 import * as userService from "../../services/user.service";
-import Layout from "../layout/Layout";
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";

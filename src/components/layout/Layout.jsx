@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 import TopNavigation from "./TopNavigation";
 import { Container } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
@@ -14,10 +15,11 @@ const Layout = ({ children }) => {
     <>
       <Container fluid className="mb-5">
         <BackgroundColor light />
-        <ToastContainer />
         <TopNavigation />
+        <ToastContainer />
         <Container className="mt-5">{children}</Container>
       </Container>
+      <Footer />
     </>
   );
 };

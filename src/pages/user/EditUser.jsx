@@ -1,6 +1,6 @@
+import Layout from "../../components/layout/Layout";
 import { firstUpperCase } from "../../helpers/string.helper";
 import * as userService from "../../services/user.service";
-import Layout from "../layout/Layout";
 import { useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { NavLink, useParams } from "react-router-dom";
@@ -42,7 +42,7 @@ const EditUser = () => {
 
       if (response?.status) {
         const userName = response.user.name;
-        toast.success(`${userName} has been successfully updated.`);
+        toast.success(`${userName} has been updated.`);
       } else {
         toast.warn(`The user couldn't be updated.`);
       }
