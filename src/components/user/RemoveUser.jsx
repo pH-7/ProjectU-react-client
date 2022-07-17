@@ -1,60 +1,49 @@
 import * as userService from "../../services/user.service";
 import Layout from "../layout/Layout";
-import React from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const DELAY_BEFORE_REDIRECTION = 1000;
-
 const RemoveUser = () => {
+  const DELAY_BEFORE_REDIRECTION_MS = 1000;
+
   const { userId } = useParams();
 
-  const submitForm = async (event) => {
-    event.preventDefault();
-
+  const submitAction = async () => {
     try {
       const response = await userService.removeUser(userId);
+
       if (response?.status) {
-        if (response?.message) {
-          toast.success(response.message);
-        }
+        toast.success("User has been successfully removed.");
+      } else {
+        toast.warn(`User couldn't be removed.`);
       }
-    } catch (err) {
-      toast.error(`User couldn't be removed.`);
+
+      setTimeout(() => {
+        window.location.href = "/";
+      }, DELAY_BEFORE_REDIRECTION_MS);
+    } catch (error) {
+      toast.error(`User cannot be removed.`);
+      console.error(error.message);
     }
-    setTimeout(() => {
-      window.location.href = "/";
-    }, DELAY_BEFORE_REDIRECTION);
   };
 
-  const cancelForm = async (event) => {
-    event.preventDefault();
-
+  const cancelAction = () => {
     window.location.href = "/";
   };
 
   return (
     <Layout>
+      <h4 className="text-center">Are you sure to remove #{userId} user?</h4>
       <Row className="justify-content-center">
-        <Col lg={3}>
-          <Form>
-            <Button
-              variant="danger"
-              type="submit"
-              onClick={submitForm}
-              className="m-lg-1"
-            >
-              Do you really wish to delete the user?
+        <Col md={4}>
+          <Form className="mt-4">
+            <Button variant="danger" onClick={submitAction} className="m-1">
+              Yes, remove this user
             </Button>
 
-            <Button
-              variant="secondary"
-              type="submit"
-              onClick={cancelForm}
-              className="m-lg-1"
-            >
-              I want to keep this user
+            <Button variant="secondary" onClick={cancelAction} className="m-1">
+              No, revert my action
             </Button>
           </Form>
         </Col>
