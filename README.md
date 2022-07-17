@@ -5,7 +5,7 @@ A simple and elegant client built for my Udemy course available at:
 
 ## Setting Up
 
-1. Make sure you have [NodeJS](https://nodejs.org/en/download) v14 or newer innstalled.
+1. Make sure you have npm v6 or newer installed (by installing [NodeJS](https://nodejs.org/en/download).
 2. Run `npm ci` to install all dependencies.
 3. `npm start` to start your React client application.
 
