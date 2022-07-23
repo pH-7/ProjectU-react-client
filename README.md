@@ -10,7 +10,7 @@ A simple and elegant client built for my Udemy course available at:
 3. `npm start` to start your React client application.
 
 
-## The Author
+## Author
 
 I'm [Pierre-Henry Soria](https://ph7.me). A **super passionate** Belgian **software engineer** 🤗 And a true cheese 🧀 & chocolate 🍫 lover! 😋 You can reach me at *hi {[AT]} ph7 [{D0T}] me*
 
@@ -24,4 +24,4 @@ This is the final and completed project of my [Udemy Course](https://www.udemy.c
 
 ## License
 
-Under [MIT](https://opensource.org/licenses/MIT) 🎉
+Distributed under [MIT](https://opensource.org/licenses/MIT) license 🎉
