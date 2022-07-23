@@ -2,16 +2,21 @@ import Layout from "../../components/layout/Layout";
 import * as userService from "../../services/user.service";
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
+import { List } from "react-content-loader";
 import { NavLink } from "react-router-dom";
 
 const UsersList = () => {
   const [users, setUsers] = useState({}); // Important, default need to be empty object
   const [errorMessage, setErrorMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchUsers = async () => {
     try {
+      setIsLoading(true);
+
       const users = await userService.retrieveAllUsers();
       setUsers(users);
+      setIsLoading(false);
     } catch (error) {
       const retrieveErrorMessage = () => {
         const apiErrorMessage = error?.response?.data?.message;
@@ -29,7 +34,11 @@ const UsersList = () => {
 
   return (
     <Layout>
-      {errorMessage ? (
+      {isLoading ? (
+        <div className="text-center">
+          <List />
+        </div>
+      ) : errorMessage ? (
         <h3 className="text-center text-danger fw-bold">{errorMessage}</h3>
       ) : (
         <>
