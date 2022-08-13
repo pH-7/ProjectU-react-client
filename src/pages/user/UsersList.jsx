@@ -24,6 +24,8 @@ const UsersList = () => {
         // Null Coalescing Operator
         return apiErrorMessage ?? "Error while connecting to the server";
       };
+
+      setIsLoading(false); // Stop loader if we receive error msg
       setErrorMessage(retrieveErrorMessage());
     }
   };
@@ -34,12 +36,12 @@ const UsersList = () => {
 
   return (
     <Layout>
-      {errorMessage ? (
-        <h3 className="text-center text-danger fw-bold">{errorMessage}</h3>
-      ) : isLoading ? (
+      {isLoading ? (
         <div className="text-center">
           <List />
         </div>
+      ) : errorMessage ? (
+        <h3 className="text-center text-danger fw-bold">{errorMessage}</h3>
       ) : (
         <>
           <h4 className="text-center mb-3">Users</h4>
