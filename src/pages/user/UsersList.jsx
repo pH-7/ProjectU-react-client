@@ -34,12 +34,12 @@ const UsersList = () => {
 
   return (
     <Layout>
-      {isLoading ? (
+      {errorMessage ? (
+        <h3 className="text-center text-danger fw-bold">{errorMessage}</h3>
+      ) : isLoading ? (
         <div className="text-center">
           <List />
         </div>
-      ) : errorMessage ? (
-        <h3 className="text-center text-danger fw-bold">{errorMessage}</h3>
       ) : (
         <>
           <h4 className="text-center mb-3">Users</h4>
