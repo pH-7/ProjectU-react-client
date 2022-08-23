@@ -1,6 +1,6 @@
 # ProjectU - React Client
 
-A simple and elegant client built for my Udemy course available at:
+A simple and elegant client built for my Udemy course available at: https://www.udemy.com/course/build-backend-api-node-js-and-react-frontend/
 
 ## Setting Up
 
