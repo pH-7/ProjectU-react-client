@@ -15,7 +15,7 @@ const CreateUser = () => {
   const submitForm = async (event) => {
     event.preventDefault();
 
-    const payload = {
+    const createUserPayload = {
       name,
       email,
       city,
@@ -23,7 +23,7 @@ const CreateUser = () => {
     };
 
     try {
-      const response = await userService.createUser(payload);
+      const response = await userService.createUser(createUserPayload);
 
       if (response?.status) {
         const userName = response?.user?.name;
